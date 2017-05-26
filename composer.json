@@ -1,0 +1,32 @@
+{
+    "name": "sassnowski/laravel-shareable-models",
+    "description": "Create shareable links from your eloquent models.",
+    "type": "library",
+    "require": {
+        "php": "^5.6|^7.0",
+        "vinkla/hashids": "^3.1",
+        "laravel/framework": "^5.4",
+        "ramsey/uuid": "^3.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.6",
+        "orchestra/testbench": "^3.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kai Sassnowski",
+            "email": "me@kai-sassnowki.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sassnowski\\LaravelShareableModel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sassnowski\\LaravelShareableModel\\Tests\\": "tests/"
+        }
+    }
+}
