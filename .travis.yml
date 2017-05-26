@@ -6,3 +6,9 @@ php:
 
 before_script:
   - travis_retry composer install --prefer-source --no-interaction --dev
+
+script:
+  - phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN ./vendor/bin/test-reporter
