@@ -5,4 +5,12 @@
 [![Code Climate](https://codeclimate.com/github/ksassnowski/laravel-shareable-models/badges/gpa.svg)](https://codeclimate.com/github/ksassnowski/laravel-shareable-models)
 [![Test Coverage](https://codeclimate.com/github/ksassnowski/laravel-shareable-models/badges/coverage.svg)](https://codeclimate.com/github/ksassnowski/laravel-shareable-models/coverage)
 
-_Coming soon..._
+Generate shareable links from your Eloquent models.
+
+## Documentation
+
+You can find the full documentation [Here](https://ksassnowski.gitbooks.io/shareable-models/content/).
+
+## License
+
+MIT
