@@ -29,5 +29,12 @@
         "psr-4": {
             "Sassnowski\\LaravelShareableModel\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
+            ]
+        }
     }
 }
