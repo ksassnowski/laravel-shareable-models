@@ -11,7 +11,9 @@
     "require-dev": {
         "phpunit/phpunit": "^5.6",
         "orchestra/testbench": "^3.3",
-        "codeclimate/php-test-reporter": "^0.4.4"
+        "codeclimate/php-test-reporter": "^0.4.4",
+        "spatie/phpunit-watcher": "^1.3",
+        "mockery/mockery": "^0.9.9"
     },
     "license": "MIT",
     "authors": [

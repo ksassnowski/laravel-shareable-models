@@ -85,4 +85,23 @@ class ShareableLinkBuilderTest extends TestCase
 
         $this->assertTrue(str_contains($link->url, '/shared/foo'));
     }
+
+    /** @test */
+    public function it_does_not_notify_by_default()
+    {
+        $link = (new ShareableLinkBuilder($this->entity))
+            ->build();
+
+        $this->assertFalse($link->shouldNotify());
+    }
+
+    /** @test */
+    public function build_a_link_that_notifies_on_visit()
+    {
+         $link = (new ShareableLinkBuilder($this->entity))
+             ->notifyOnVisit()
+             ->build();
+
+        $this->assertTrue($link->shouldNotify());
+    }
 }

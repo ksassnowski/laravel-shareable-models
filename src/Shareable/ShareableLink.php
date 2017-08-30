@@ -60,4 +60,12 @@ class ShareableLink extends Model
     {
         return !is_null($this->password);
     }
+
+    /**
+     * @return bool
+     */
+    public function shouldNotify()
+    {
+        return $this->should_notify;
+    }
 }

@@ -34,6 +34,11 @@ class ShareableLinkBuilder
     private $expirationDate;
 
     /**
+     * @var bool
+     */
+    private $shouldNotify = false;
+
+    /**
      * ShareableLinkBuilder constructor.
      *
      * @param ShareableInterface $entity
@@ -90,6 +95,16 @@ class ShareableLinkBuilder
     }
 
     /**
+     * @return $this
+     */
+    public function notifyOnVisit()
+    {
+        $this->shouldNotify = true;
+
+        return $this;
+    }
+
+    /**
      * @return ShareableLink
      */
     public function build()
@@ -105,6 +120,7 @@ class ShareableLinkBuilder
             'uuid' => $uuid,
             'hash' => $hash,
             'url' => $this->buildUrl($hash),
+            'should_notify' => $this->shouldNotify
         ]);
 
         return $this->entity->links()->save($link);

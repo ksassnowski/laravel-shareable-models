@@ -4,6 +4,7 @@ namespace Sassnowski\LaravelShareableModel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 class ValidateShareableLink
@@ -33,6 +34,12 @@ class ValidateShareableLink
             return redirect(url(config('shareable-model.redirect_routes.password_protected'), $link->hash));
         }
 
-        return $next($request);
+        $response = $next($request);
+
+        if ($link->shouldNotify()) {
+            event(new LinkWasVisited($link));
+        }
+
+        return $response;
     }
 }
