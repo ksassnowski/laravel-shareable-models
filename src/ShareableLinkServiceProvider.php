@@ -2,8 +2,6 @@
 
 namespace Sassnowski\LaravelShareableModel;
 
-use Hashids\Hashids;
-use Hashids\HashidsInterface;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
@@ -21,12 +19,7 @@ class ShareableLinkServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('shareable_link', function ($value) {
-            /** @var HashidsInterface $hashids */
-            $hashids = app()->make(HashidsInterface::class);
-
-            $uuid = $hashids->decodeHex($value);
-
-            return ShareableLink::where('uuid', $uuid)->firstOrFail();
+            return ShareableLink::where('uuid', $value)->firstOrFail();
         });
 
         $this->publishes([
@@ -39,14 +32,6 @@ class ShareableLinkServiceProvider extends ServiceProvider
 
     public function register()
     {
-        app()->bind(HashidsInterface::class, function () {
-            return new Hashids(
-                config('shareable-model.hashids.salt'),
-                config('shareable-model.hashids.min_hash_length'),
-                config('shareable-model.hashids.alphabet')
-            );
-        });
-
         $this->mergeConfigFrom(__DIR__.'/../config/shareable-model.php', 'shareable-model');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'shareable-model');

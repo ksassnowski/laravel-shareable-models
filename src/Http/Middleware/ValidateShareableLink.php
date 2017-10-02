@@ -31,7 +31,7 @@ class ValidateShareableLink
         }
 
         if ($link->requiresPassword() && !session($link->uuid)) {
-            return redirect(url(config('shareable-model.redirect_routes.password_protected'), $link->hash));
+            return redirect(url(config('shareable-model.redirect_routes.password_protected'), $link->uuid));
         }
 
         $response = $next($request);

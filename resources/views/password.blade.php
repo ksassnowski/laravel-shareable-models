@@ -101,7 +101,7 @@
 
 <body>
 <div class="box">
-    <form action="{{ url(config('shareable-model.redirect_routes.password_protected'), $link->hash) }}" method="POST">
+    <form action="{{ url(config('shareable-model.redirect_routes.password_protected'), $link->uuid) }}" method="POST">
         {{ csrf_field() }}
 
         <div class="box__header">

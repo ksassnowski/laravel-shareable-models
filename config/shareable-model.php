@@ -21,20 +21,4 @@ return [
         'expired' => '/shared/expired',
         'password_protected' => '/shared/password',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Hashids Configuration
-    |--------------------------------------------------------------------------
-    |
-    | This is where you can configure the underlying Hashids library to
-    | your liking.
-    |
-    */
-
-    'hashids' => [
-        'min_hash_length' => 10,
-        'salt' => env('SHAREABLE_LINK_SALT', env('APP_KEY')),
-        'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
-    ],
 ];

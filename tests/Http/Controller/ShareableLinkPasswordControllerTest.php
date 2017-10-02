@@ -17,7 +17,7 @@ class ShareableLinkPasswordControllerTest extends TestCase
             ->setPassword('super-secret')
             ->build();
 
-        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->hash);
+        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->uuid);
 
         $response = $this->post($url, ['password' => 'super-secret']);
 
@@ -34,7 +34,7 @@ class ShareableLinkPasswordControllerTest extends TestCase
             ->setPassword('super-secret')
             ->build();
 
-        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->hash);
+        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->uuid);
 
         $response = $this->post($url, ['password' => 'wrong-password']);
 
@@ -51,7 +51,7 @@ class ShareableLinkPasswordControllerTest extends TestCase
             ->setPassword('super-secret')
             ->build();
 
-        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->hash);
+        $url = url(config('shareable-model.redirect_routes.password_protected'), $link->uuid);
         $response = $this->get($url);
 
         $response->assertStatus(200);

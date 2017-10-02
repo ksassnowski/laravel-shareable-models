@@ -68,7 +68,7 @@ class ValidateShareableLinkTest extends TestCase
 
         $response = $this->get($link->url);
 
-        $expectedUrl = url(config('shareable-model.redirect_routes.password_protected'), $link->hash);
+        $expectedUrl = url(config('shareable-model.redirect_routes.password_protected'), $link->uuid);
         $response->assertRedirect($expectedUrl);
     }
 
