@@ -3,8 +3,7 @@
     "description": "Create shareable links from your eloquent models.",
     "type": "library",
     "require": {
-        "php": "^5.6.4|^7.0.8",
-        "hashids/hashids": "^2.0",
+        "php": "^5.6|^7.0",
         "illuminate/http": "^5.4",
         "illuminate/database": "^5.4",
         "illuminate/support": "^5.4",
