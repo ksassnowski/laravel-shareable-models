@@ -104,4 +104,14 @@ class ShareableLinkBuilderTest extends TestCase
 
         $this->assertTrue($link->shouldNotify());
     }
+
+    /** @test */
+    public function it_is_possible_to_override_the_base_url()
+    {
+        config(['shareable-model.base_url' => '/foobar']);
+
+        $link = (new ShareableLinkBuilder($this->entity))->build();
+
+        $this->assertContains('/foobar', $link->url);
+    }
 }

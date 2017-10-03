@@ -36,6 +36,11 @@ class ShareableLinkBuilder
      * @var bool
      */
     private $shouldNotify = false;
+    
+    /**
+     * @var string
+     */
+    private $baseUrl;
 
     /**
      * ShareableLinkBuilder constructor.
@@ -45,6 +50,7 @@ class ShareableLinkBuilder
     public function __construct(ShareableInterface $entity)
     {
         $this->entity = $entity;
+        $this->baseUrl = config('shareable-model.base_url');
     }
 
     /**
@@ -130,9 +136,9 @@ class ShareableLinkBuilder
     private function buildUrl($uuid)
     {
         if (!$this->prefix) {
-            return url('/shared', [$uuid]);
+            return url($this->baseUrl, [$uuid]);
         }
 
-        return url('/shared', [$this->prefix, $uuid]);
+        return url($this->baseUrl, [$this->prefix, $uuid]);
     }
 }
