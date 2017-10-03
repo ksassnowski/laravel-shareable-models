@@ -26,7 +26,7 @@ class AddShouldNotifyColumnToShareableLinksTable extends Migration
     public function down()
     {
         Schema::table('shareable_links', function (Blueprint $table) {
-            $table->dropColumn('should_notfiy');
+            $table->dropColumn('should_notify');
         });
     }
 }
