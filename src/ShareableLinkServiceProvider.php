@@ -2,6 +2,8 @@
 
 namespace Sassnowski\LaravelShareableModel;
 
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
@@ -19,7 +21,11 @@ class ShareableLinkServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('shareable_link', function ($value) {
-            return ShareableLink::where('uuid', $value)->firstOrFail();
+            try {
+                return ShareableLink::where('uuid', $value)->firstOrFail();
+            } catch(QueryException $e) {
+                throw new ModelNotFoundException($e->getMessage());
+            }
         });
 
         $this->publishes([
