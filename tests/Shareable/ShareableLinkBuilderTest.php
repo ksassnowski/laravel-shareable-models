@@ -114,4 +114,13 @@ class ShareableLinkBuilderTest extends TestCase
 
         $this->assertContains('/foobar', $link->url);
     }
+
+    /** @test */
+    public function it_is_posible_to_add_extra_data()
+    {
+        $link = (new ShareableLinkBuilder($this->entity))->setExtraData('extra_data', 'value')->build();
+
+        $this->assertArrayHasKey('extra_data', $link);
+        $this->assertEquals('value', $link->extra_data);
+    }
 }

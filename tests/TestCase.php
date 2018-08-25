@@ -64,6 +64,10 @@ abstract class TestCase extends Orchestra
         });
 
         $this->artisan('migrate');
+
+        $this->app['db']->connection()->getSchemaBuilder()->table('shareable_links', function (Blueprint $table) {
+            $table->string('extra_data')->nullable();
+        });
     }
 
     private function setUpRoutes()
