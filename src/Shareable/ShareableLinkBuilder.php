@@ -36,6 +36,11 @@ class ShareableLinkBuilder
      * @var bool
      */
     private $shouldNotify = false;
+
+    /**
+     * @var array
+     */
+    private $extraData = [];
     
     /**
      * @var string
@@ -110,20 +115,38 @@ class ShareableLinkBuilder
     }
 
     /**
+     * @param $key
+     * @param $value
+     * @return $this
+     */
+    public function setExtraData($key, $value)
+    {
+        $this->extraData = array_add($this->extraData, $key, $value);
+
+        return $this;
+    }
+
+    /**
      * @return ShareableLink
      */
     public function build()
     {
         $uuid = Uuid::uuid4()->getHex();
 
-        $link = new ShareableLink([
+        $data = [
             'active' => $this->active,
             'password' => $this->password ? bcrypt($this->password) : null,
             'expires_at' => $this->expirationDate,
             'uuid' => $uuid,
             'url' => $this->buildUrl($uuid),
             'should_notify' => $this->shouldNotify
-        ]);
+        ];
+
+        foreach ($this->extraData as $key => $value) {
+            $data = array_add($data, $key, $value);
+        }
+
+        $link = new ShareableLink($data);
 
         return $this->entity->links()->save($link);
     }
