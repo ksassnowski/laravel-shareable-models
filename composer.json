@@ -3,10 +3,10 @@
     "description": "Create shareable links from your eloquent models.",
     "type": "library",
     "require": {
-        "php": "^5.6|^7.0",
-        "illuminate/http": "^5.4",
-        "illuminate/database": "^5.4",
-        "illuminate/support": "^5.4",
+        "php": "^7.0",
+        "illuminate/http": "^5.4|^6.0",
+        "illuminate/database": "^5.4|^6.0",
+        "illuminate/support": "^5.4|^6.0",
         "ramsey/uuid": "^3.6"
     },
     "require-dev": {
