@@ -1,9 +1,8 @@
 language: php
 php:
-  - 7.0
-  - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 before_script:
   - travis_retry composer install --prefer-source --no-interaction --dev
@@ -11,5 +10,3 @@ before_script:
 script:
   - $TRAVIS_BUILD_DIR/vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-after_success:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN ./vendor/bin/test-reporter

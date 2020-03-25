@@ -13,7 +13,7 @@ class ShareableLinkBuilderTest extends TestCase
      */
     private $entity;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -83,7 +83,7 @@ class ShareableLinkBuilderTest extends TestCase
             ->setPrefix('foo')
             ->build();
 
-        $this->assertTrue(str_contains($link->url, '/shared/foo'));
+        $this->assertStringContainsString('/shared/foo', $link->url);
     }
 
     /** @test */
@@ -112,6 +112,6 @@ class ShareableLinkBuilderTest extends TestCase
 
         $link = (new ShareableLinkBuilder($this->entity))->build();
 
-        $this->assertContains('/foobar', $link->url);
+        $this->assertStringContainsString('/foobar', $link->url);
     }
 }

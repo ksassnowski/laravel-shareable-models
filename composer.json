@@ -3,18 +3,17 @@
     "description": "Create shareable links from your eloquent models.",
     "type": "library",
     "require": {
-        "php": "^7.0",
-        "illuminate/http": "^5.4|^6.0",
-        "illuminate/database": "^5.4|^6.0",
-        "illuminate/support": "^5.4|^6.0",
+        "php": "^7.2",
+        "illuminate/http": "^6.0|^7.0",
+        "illuminate/database": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0",
         "ramsey/uuid": "^3.6"
     },
     "require-dev": {
         "doctrine/dbal": "^2.5",
-        "phpunit/phpunit": "^5.6",
-        "orchestra/testbench": "^3.3",
-        "codeclimate/php-test-reporter": "^0.4.4",
-        "mockery/mockery": "^0.9.9"
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^8",
+        "mockery/mockery": "dev-master"
     },
     "license": "MIT",
     "authors": [

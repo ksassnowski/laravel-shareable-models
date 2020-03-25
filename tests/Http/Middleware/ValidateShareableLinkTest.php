@@ -15,7 +15,7 @@ class ValidateShareableLinkTest extends TestCase
      */
     private $entity;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

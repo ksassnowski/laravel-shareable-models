@@ -10,7 +10,7 @@ use Sassnowski\LaravelShareableModel\Http\Middleware\ValidateShareableLink;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
