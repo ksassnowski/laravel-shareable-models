@@ -7,7 +7,7 @@
         "illuminate/http": "^6.0|^7.0",
         "illuminate/database": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
-        "ramsey/uuid": "^3.6"
+        "ramsey/uuid": "^4.0"
     },
     "require-dev": {
         "doctrine/dbal": "^2.5",
