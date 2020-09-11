@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $uuid
  * @property string $url
  * @property boolean $active
- * @property Carbon|null $expires_at
+ * @property string|null $expires_at
  * @property boolean $should_notify
  */
 class ShareableLink extends Model
