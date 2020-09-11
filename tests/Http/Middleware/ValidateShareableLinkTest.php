@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Tests\Http\Middleware;
 
 use Carbon\Carbon;
-use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
 use Sassnowski\LaravelShareableModel\Tests\TestCase;
 use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
+use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 class ValidateShareableLinkTest extends TestCase
@@ -25,6 +25,7 @@ class ValidateShareableLinkTest extends TestCase
     /** @test */
     public function can_access_an_active_link()
     {
+        $this->withoutExceptionHandling();
         $link = ShareableLink::buildFor($this->entity)
             ->setActive()
             ->build();
@@ -50,7 +51,7 @@ class ValidateShareableLinkTest extends TestCase
     {
         $link = ShareableLink::buildFor($this->entity)
             ->setActive()
-            ->setExpirationDate(Carbon::now()->subDay(1))
+            ->setExpirationDate(Carbon::now()->subDay())
             ->build();
 
         $response = $this->get($link->url);
@@ -80,7 +81,7 @@ class ValidateShareableLinkTest extends TestCase
             ->setPassword('super-secret')
             ->build();
 
-        session([$link->uuid => true]);
+        session([$link->uuid->toString() => true]);
 
         $response = $this->get($link->url);
 

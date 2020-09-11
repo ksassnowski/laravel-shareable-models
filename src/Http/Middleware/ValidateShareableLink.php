@@ -1,9 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
@@ -15,7 +17,7 @@ class ValidateShareableLink
      * @param Request $request
      * @param Closure $next
      *
-     * @return mixed
+     * @return RedirectResponse|Response
      */
     public function handle(Request $request, Closure $next)
     {

@@ -1,70 +1,59 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Shareable;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property string|null $password
+ * @property string $uuid
+ * @property string $url
+ * @property boolean $active
+ * @property Carbon|null $expires_at
+ * @property boolean $should_notify
+ */
 class ShareableLink extends Model
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $guarded = [];
 
-    /**
-     * Returns a new shareable link builder instance for the
-     * provided entity.
-     *
-     * @param ShareableInterface $entity
-     *
-     * @return ShareableLinkBuilder
-     */
-    public static function buildFor(ShareableInterface $entity)
+    protected $casts = [
+        'should_notify' => 'bool',
+        'active' => 'bool',
+    ];
+
+    public static function buildFor(ShareableInterface $entity): ShareableLinkBuilder
     {
         return new ShareableLinkBuilder($entity);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function shareable()
+    public function shareable(): MorphTo
     {
         return $this->morphTo();
     }
 
-    /**
-     * @return bool
-     */
-    public function isActive()
+    public function isActive(): bool
     {
         return (bool) $this->active;
     }
 
-    /**
-     * @return bool
-     */
-    public function isExpired()
+    public function isExpired(): bool
     {
-        if (!$this->expires_at) {
+        if ($this->expires_at === null) {
             return false;
         }
 
         return Carbon::now()->greaterThan(Carbon::parse($this->expires_at));
     }
 
-    /**
-     * @return bool
-     */
-    public function requiresPassword()
+    public function requiresPassword(): bool
     {
         return !is_null($this->password);
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldNotify()
+    public function shouldNotify(): bool
     {
         return $this->should_notify;
     }

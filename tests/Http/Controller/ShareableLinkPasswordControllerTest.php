@@ -22,7 +22,7 @@ class ShareableLinkPasswordControllerTest extends TestCase
         $response = $this->post($url, ['password' => 'super-secret']);
 
         $response->assertRedirect($link->url);
-        $response->assertSessionHas($link->uuid, true);
+        $response->assertSessionHas($link->uuid->toString(), true);
     }
 
     /** @test */
@@ -39,7 +39,7 @@ class ShareableLinkPasswordControllerTest extends TestCase
         $response = $this->post($url, ['password' => 'wrong-password']);
 
         $response->assertRedirect($link->url);
-        $response->assertSessionMissing($link->uuid);
+        $response->assertSessionMissing($link->uuid->toString());
     }
 
     /** @test */

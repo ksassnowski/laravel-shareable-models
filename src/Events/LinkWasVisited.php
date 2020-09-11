@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Events;
 
@@ -6,16 +6,9 @@ use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
 
 class LinkWasVisited
 {
-    /**
-     * @var ShareableLink
-     */
+    /** @var ShareableLink  */
     public $link;
 
-    /**
-     * LinkWasVisited constructor.
-     *
-     * @param ShareableLink $link
-     */
     public function __construct(ShareableLink $link)
     {
         $this->link = $link;

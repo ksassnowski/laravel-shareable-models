@@ -1,108 +1,69 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Shareable;
 
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Type\Hexadecimal;
 
 class ShareableLinkBuilder
 {
-    /**
-     * @var ShareableInterface
-     */
+    /** @var ShareableInterface  */
     private $entity;
 
-    /**
-     * @var string
-     */
-    private $prefix;
+    /** @var string  */
+    private $prefix = '';
 
-    /**
-     * @var string
-     */
-    private $password;
+    /** @var string|null */
+    private $password = null;
 
-    /**
-     * @var bool
-     */
+    /** @var bool  */
     private $active = false;
 
-    /**
-     * @var Carbon
-     */
-    private $expirationDate;
+    /** @var Carbon|null  */
+    private $expirationDate = null;
 
-    /**
-     * @var bool
-     */
+    /** @var bool  */
     private $shouldNotify = false;
-    
-    /**
-     * @var string
-     */
+
+    /** @var string */
     private $baseUrl;
 
-    /**
-     * ShareableLinkBuilder constructor.
-     *
-     * @param ShareableInterface $entity
-     */
     public function __construct(ShareableInterface $entity)
     {
         $this->entity = $entity;
         $this->baseUrl = config('shareable-model.base_url');
     }
 
-    /**
-     * @param string $prefix
-     *
-     * @return $this
-     */
-    public function setPrefix($prefix)
+    public function setPrefix(string $prefix): self
     {
         $this->prefix = $prefix;
 
         return $this;
     }
 
-    /**
-     * @param string $password
-     *
-     * @return $this
-     */
-    public function setPassword($password)
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setActive()
+    public function setActive(): self
     {
         $this->active = true;
 
         return $this;
     }
 
-    /**
-     * @param Carbon $date
-     *
-     * @return $this
-     */
-    public function setExpirationDate(Carbon $date)
+    public function setExpirationDate(Carbon $date): self
     {
         $this->expirationDate = $date;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function notifyOnVisit()
+    public function notifyOnVisit(): self
     {
         $this->shouldNotify = true;
 
@@ -110,7 +71,7 @@ class ShareableLinkBuilder
     }
 
     /**
-     * @return ShareableLink
+     * @return false|ShareableLink
      */
     public function build()
     {
@@ -128,12 +89,7 @@ class ShareableLinkBuilder
         return $this->entity->links()->save($link);
     }
 
-    /**
-     * @param string $uuid
-     *
-     * @return string
-     */
-    private function buildUrl($uuid)
+    private function buildUrl(Hexadecimal $uuid): string
     {
         if (!$this->prefix) {
             return url($this->baseUrl, [$uuid]);
