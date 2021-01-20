@@ -4,9 +4,9 @@
     "type": "library",
     "require": {
         "php": "^7.3",
-        "illuminate/http": "^8.0",
-        "illuminate/database": "^8.0",
-        "illuminate/support": "^8.0",
+        "illuminate/http": "^8.23.1",
+        "illuminate/database": "^8.23.1",
+        "illuminate/support": "^8.23.1",
         "ramsey/uuid": "^4.0"
     },
     "require-dev": {
