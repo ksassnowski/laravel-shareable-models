@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class ShareableLink extends Model
 {
-    /** @var array */
+    /** @var string[] */
     protected $guarded = [];
 
     protected $casts = [
