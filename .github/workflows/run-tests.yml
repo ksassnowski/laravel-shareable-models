@@ -25,10 +25,11 @@ jobs:
           key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo, sqlite, pdo_sqlite
+          tools: composer:v2
           coverage: none
 
       - name: Set minimum required versions for PHP 8.1
