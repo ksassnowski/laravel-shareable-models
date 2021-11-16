@@ -39,7 +39,7 @@ jobs:
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse
+        run: composer analyse
 
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: composer test

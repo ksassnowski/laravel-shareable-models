@@ -50,6 +50,16 @@
         ],
         "post-update-cmd": [
             "@composer normalize"
+        ],
+        "check": [
+            "@analyse",
+            "@test"
+        ],
+        "analyse": [
+            "vendor/bin/phpstan analyse"
+        ],
+        "test": [
+            "vendor/bin/phpunit"
         ]
     }
 }
