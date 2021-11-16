@@ -1,21 +1,7 @@
 {
     "name": "sassnowski/laravel-shareable-models",
-    "description": "Create shareable links from your eloquent models.",
     "type": "library",
-    "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/http": "^8.23.1",
-        "illuminate/database": "^8.23.1",
-        "illuminate/support": "^8.23.1",
-        "ramsey/uuid": "^4.0"
-    },
-    "require-dev": {
-        "doctrine/dbal": "^3.0",
-        "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9",
-        "mockery/mockery": "^1.4",
-        "nunomaduro/larastan": "^0.6.4"
-    },
+    "description": "Create shareable links from your eloquent models.",
     "license": "MIT",
     "authors": [
         {
@@ -23,6 +9,28 @@
             "email": "me@kai-sassnowki.com"
         }
     ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "illuminate/database": "^8.23.1",
+        "illuminate/http": "^8.23.1",
+        "illuminate/support": "^8.23.1",
+        "ramsey/uuid": "^4.0"
+    },
+    "require-dev": {
+        "doctrine/dbal": "^3.0",
+        "ergebnis/composer-normalize": "^2.15",
+        "mockery/mockery": "^1.4",
+        "nunomaduro/larastan": "^0.6.4",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
+            ]
+        }
+    },
     "autoload": {
         "psr-4": {
             "Sassnowski\\LaravelShareableModel\\": "src/"
@@ -33,11 +41,15 @@
             "Sassnowski\\LaravelShareableModel\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
-            ]
-        }
+    "scripts": {
+        "post-install-cmd": [
+            "@normalize"
+        ],
+        "post-update-cmd": [
+            "@normalize"
+        ],
+        "normalize": [
+            "@composer normalize"
+        ]
     }
 }
