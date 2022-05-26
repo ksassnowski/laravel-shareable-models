@@ -1,8 +1,8 @@
 {
     "name": "sassnowski/laravel-shareable-models",
-    "type": "library",
     "description": "Create shareable links from your eloquent models.",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Kai Sassnowski",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "illuminate/database": "^9.0",
         "illuminate/http": "^9.0",
         "illuminate/support": "^9.0",
@@ -25,13 +25,8 @@
         "phpunit/phpunit": "^9.5.8",
         "roave/security-advisories": "dev-latest"
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
-            ]
-        }
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Sassnowski\\LaravelShareableModel\\": "src/"
@@ -42,8 +37,18 @@
             "Sassnowski\\LaravelShareableModel\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sassnowski\\LaravelShareableModel\\ShareableLinkServiceProvider"
+            ]
+        }
+    },
     "scripts": {
         "post-install-cmd": [
             "@composer normalize"
@@ -51,12 +56,12 @@
         "post-update-cmd": [
             "@composer normalize"
         ],
+        "analyse": [
+            "vendor/bin/phpstan analyse"
+        ],
         "check": [
             "@analyse",
             "@test"
-        ],
-        "analyse": [
-            "vendor/bin/phpstan analyse"
         ],
         "test": [
             "vendor/bin/phpunit"
