@@ -5,6 +5,7 @@ namespace Sassnowski\LaravelShareableModel\Tests;
 use Illuminate\Routing\Router;
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 use Sassnowski\LaravelShareableModel\ShareableLinkServiceProvider;
 use Sassnowski\LaravelShareableModel\Http\Middleware\ValidateShareableLink;
 
@@ -69,8 +70,8 @@ abstract class TestCase extends Orchestra
     private function setUpRoutes()
     {
         // Since these routes don't get loaded as part of the regular application bootstrapping
-        // we have to explicitly apply the `bindings` middleware here.
-        \Route::get('shared/{shareable_link}', ['middleware' => ['bindings', 'shared'], function ($shareableLink) {
+        // we have to explicitly apply the `SubstituteBindings` middleware here.
+        \Route::get('shared/{shareable_link}', ['middleware' => [SubstituteBindings::class, 'shared'], function ($shareableLink) {
             return $shareableLink->shareable->path;
         }]);
     }

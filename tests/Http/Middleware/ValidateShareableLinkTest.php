@@ -3,6 +3,7 @@
 namespace Sassnowski\LaravelShareableModel\Tests\Http\Middleware;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Event;
 use Sassnowski\LaravelShareableModel\Tests\TestCase;
 use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
 use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
@@ -92,7 +93,7 @@ class ValidateShareableLinkTest extends TestCase
     /** @test */
     public function it_triggers_an_event_when_a_link_is_visited_an_configured_to_do_so()
     {
-        $this->expectsEvents(LinkWasVisited::class);
+        Event::fake();
 
         $link = ShareableLink::buildFor($this->entity)
             ->setActive()
@@ -100,17 +101,21 @@ class ValidateShareableLinkTest extends TestCase
             ->build();
 
         $this->get($link->url);
+
+        Event::assertDispatched(LinkWasVisited::class);
     }
 
     /** @test */
     public function it_does_not_trigger_an_event_if_the_link_not_configured_to_do_so()
     {
-        $this->doesntExpectEvents(LinkWasVisited::class);
+        Event::fake();
 
         $link = ShareableLink::buildFor($this->entity)
             ->setActive()
             ->build();
 
         $this->get($link->url);
+
+        Event::assertNotDispatched(LinkWasVisited::class);
     }
 }
