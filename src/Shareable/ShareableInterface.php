@@ -2,14 +2,12 @@
 
 namespace Sassnowski\LaravelShareableModel\Shareable;
 
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOneOrMany;
 
 interface ShareableInterface
 {
     /**
-     * @return MorphOne|MorphMany|MorphOneOrMany
+     * @return MorphMany<ShareableLink>
      */
-    public function links();
+    public function links(): MorphMany;
 }

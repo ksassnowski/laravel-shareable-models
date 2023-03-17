@@ -16,9 +16,14 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class ShareableLink extends Model
 {
-    /** @var string[] */
+    /**
+     * @var array<string, string>
+     */
     protected $guarded = [];
 
+    /**
+     * @var array<string, string>
+     */
     protected $casts = [
         'should_notify' => 'bool',
         'active' => 'bool',
@@ -29,6 +34,9 @@ class ShareableLink extends Model
         return new ShareableLinkBuilder($entity);
     }
 
+    /**
+     * @return MorphTo<Model, ShareableLink>
+     */
     public function shareable(): MorphTo
     {
         return $this->morphTo();
