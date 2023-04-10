@@ -2,9 +2,9 @@
 
 namespace Sassnowski\LaravelShareableModel\Tests\Http\Controller;
 
-use Sassnowski\LaravelShareableModel\Tests\TestCase;
-use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
+use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
+use Sassnowski\LaravelShareableModel\Tests\TestCase;
 
 class ShareableLinkPasswordControllerTest extends TestCase
 {

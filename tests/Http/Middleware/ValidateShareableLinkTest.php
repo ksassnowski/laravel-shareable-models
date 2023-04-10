@@ -1,13 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Tests\Http\Middleware;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
-use Sassnowski\LaravelShareableModel\Tests\TestCase;
-use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
 use Sassnowski\LaravelShareableModel\Events\LinkWasVisited;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLink;
+use Sassnowski\LaravelShareableModel\Tests\Models\Upload;
+use Sassnowski\LaravelShareableModel\Tests\TestCase;
 
 class ValidateShareableLinkTest extends TestCase
 {

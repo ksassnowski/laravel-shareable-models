@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Shareable;
 
@@ -10,9 +12,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string|null $password
  * @property string $uuid
  * @property string $url
- * @property boolean $active
+ * @property bool $active
  * @property string|null $expires_at
- * @property boolean $should_notify
+ * @property bool $should_notify
  */
 class ShareableLink extends Model
 {
@@ -58,7 +60,7 @@ class ShareableLink extends Model
 
     public function requiresPassword(): bool
     {
-        return !is_null($this->password);
+        return ! is_null($this->password);
     }
 
     public function shouldNotify(): bool

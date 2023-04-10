@@ -3,8 +3,8 @@
 namespace Sassnowski\LaravelShareableModel\Tests\Models;
 
 use Carbon\Carbon;
-use Sassnowski\LaravelShareableModel\Tests\TestCase;
 use Sassnowski\LaravelShareableModel\Shareable\ShareableLinkBuilder;
+use Sassnowski\LaravelShareableModel\Tests\TestCase;
 
 class ShareableLinkBuilderTest extends TestCase
 {
