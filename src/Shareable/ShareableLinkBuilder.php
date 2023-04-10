@@ -1,29 +1,31 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sassnowski\LaravelShareableModel\Shareable;
 
 use Carbon\Carbon;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Type\Hexadecimal;
+use Ramsey\Uuid\Uuid;
 
 class ShareableLinkBuilder
 {
-    /** @var ShareableInterface  */
+    /** @var ShareableInterface */
     private $entity;
 
-    /** @var string  */
+    /** @var string */
     private $prefix = '';
 
     /** @var string|null */
     private $password = null;
 
-    /** @var bool  */
+    /** @var bool */
     private $active = false;
 
-    /** @var Carbon|null  */
+    /** @var Carbon|null */
     private $expirationDate = null;
 
-    /** @var bool  */
+    /** @var bool */
     private $shouldNotify = false;
 
     /** @var string */
@@ -83,7 +85,7 @@ class ShareableLinkBuilder
             'expires_at' => $this->expirationDate,
             'uuid' => $uuid,
             'url' => $this->buildUrl($uuid),
-            'should_notify' => $this->shouldNotify
+            'should_notify' => $this->shouldNotify,
         ]);
 
         return $this->entity->links()->save($link);
@@ -91,7 +93,7 @@ class ShareableLinkBuilder
 
     private function buildUrl(Hexadecimal $uuid): string
     {
-        if (!$this->prefix) {
+        if (! $this->prefix) {
             return url($this->baseUrl, [$uuid]);
         }
 

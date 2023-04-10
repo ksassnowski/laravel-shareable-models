@@ -2,12 +2,12 @@
 
 namespace Sassnowski\LaravelShareableModel\Tests;
 
-use Illuminate\Routing\Router;
 use Illuminate\Database\Schema\Blueprint;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Routing\Middleware\SubstituteBindings;
-use Sassnowski\LaravelShareableModel\ShareableLinkServiceProvider;
+use Illuminate\Routing\Router;
+use Orchestra\Testbench\TestCase as Orchestra;
 use Sassnowski\LaravelShareableModel\Http\Middleware\ValidateShareableLink;
+use Sassnowski\LaravelShareableModel\ShareableLinkServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -23,8 +23,7 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageProviders($app)
@@ -35,7 +34,7 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      */
     protected function getEnvironmentSetUp($app)
     {

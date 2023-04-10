@@ -19,6 +19,7 @@
     "require-dev": {
         "doctrine/dbal": "^3.5",
         "ergebnis/composer-normalize": "^2.29",
+        "laravel/pint": "^1.8",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/larastan": "^2.5.1",
         "orchestra/testbench": "^8.0",
